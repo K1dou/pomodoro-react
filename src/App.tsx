@@ -1,4 +1,4 @@
-import Container from "./components/Container";
+import Container from "./components/container";
 import { Heading } from "./components/Heading";
 import "./styles/global.css";
 import "./styles/theme.css";
@@ -7,10 +7,10 @@ export default function App() {
   return (
     <>
       <Container>
-        <Heading>LOGO</Heading>
+        <Heading>L</Heading>
       </Container>
       <Container>
-        <Heading>LOGO</Heading>
+        <Heading>O</Heading>
       </Container>
     </>
   );
