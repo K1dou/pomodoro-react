@@ -9,6 +9,7 @@ import { Menu } from "./components/Menu";
 
 import "./styles/global.css";
 import "./styles/theme.css";
+import { Footer } from "./components/Footer";
 
 export default function App() {
   return (
@@ -51,6 +52,10 @@ export default function App() {
             ></DefaultButton>
           </div>
         </form>
+      </Container>
+
+      <Container>
+        <Footer></Footer>
       </Container>
     </>
   );
