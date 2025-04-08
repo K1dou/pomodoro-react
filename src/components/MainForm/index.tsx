@@ -1,18 +1,18 @@
 import styles from "./styles.module.css";
 
 import { PlayCircleIcon, StopCircleIcon } from "lucide-react";
+import { FormEvent, useState } from "react";
+import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
+import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
+import { TaskModel } from "../../models/TaskModel";
+import { getNextCycle } from "../../utils/getNextCycle";
+import { getNextCycleType } from "../../utils/getNextCycleType";
 import Cycles from "../Cycles";
 import DefaultButton from "../DefaultButton";
 import DefaultInput from "../DefaultInput";
-import { FormEvent, useState } from "react";
-import { TaskModel } from "../../models/TaskModel";
-import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
-import { getNextCycle } from "../../utils/getNextCycle";
-import { getNextCycleType } from "../../utils/getNextCycleType";
-import { formatSecondsToMinutes } from "../../utils/formatSecondsToMinutes";
 
 export function MainForm() {
-  const { state, setState } = useTaskContext();
+  const { state, dispatch } = useTaskContext();
   const [taskname, setTaskName] = useState("");
 
   const nextClycle = getNextCycle(state.currentCycle);
@@ -39,21 +39,13 @@ export function MainForm() {
       duration: state.config[nextClycleType],
       type: nextClycleType,
     };
-    const secondsRemaining = newTask.duration * 60;
 
-    setState((prev) => {
-      return {
-        ...prev,
-        config: {
-          ...prev.config,
-        },
-        activeTask: newTask,
-        currentCycle: nextClycle,
-        secondsRemaining,
-        formattedSecondsRemaining: formatSecondsToMinutes(secondsRemaining),
-        tasks: [...prev.tasks, newTask],
-      };
-    });
+    dispatch({ type: TaskActionTypes.START_TASK, payload: newTask })
+
+  }
+
+  function handleInterruptTask() {
+    dispatch({ type: TaskActionTypes.INTERRUPT_TASK })
   }
 
   return (
@@ -87,14 +79,17 @@ export function MainForm() {
             aria-label="Iniciar tarefa"
             type="submit"
             icon={<PlayCircleIcon></PlayCircleIcon>}
+            key="ButaoEnviar"
           ></DefaultButton>
         ) : (
           <DefaultButton
+            onClick={handleInterruptTask}
             title="Parar tarefa"
             aria-label="Parar tarefa"
             type="button"
             icon={<StopCircleIcon></StopCircleIcon>}
             color="red"
+            key="ButaoParar"
           ></DefaultButton>
         )}
       </div>

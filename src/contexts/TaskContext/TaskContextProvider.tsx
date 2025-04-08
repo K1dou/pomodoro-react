@@ -1,18 +1,19 @@
-import { useState } from "react";
-import { TaskStateModel } from "../../models/TaskStateModel";
+import { useReducer } from "react";
 import { initialTaskState } from "./initialTaskState";
 import { TaskContext } from "./TaskContext";
+import { taskReducer } from "./taskReducer";
 
 type TaskContextProviderProps = {
   children: React.ReactNode;
 };
 
 export function TaskContextProvider({ children }: TaskContextProviderProps) {
-  const [state, setState] = useState<TaskStateModel>(initialTaskState);
+  const [state, dispatch] = useReducer(taskReducer, initialTaskState)
+
 
   return (
-    <TaskContext.Provider value={{ state, setState }}>
+    <TaskContext.Provider value={{ state, dispatch }}>
       {children}
-    </TaskContext.Provider>
+    </TaskContext.Provider >
   );
 }
