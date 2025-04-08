@@ -11,6 +11,8 @@ import Cycles from "../Cycles";
 import DefaultButton from "../DefaultButton";
 import DefaultInput from "../DefaultInput";
 import { Tips } from "../Tips";
+import { toast } from "react-toastify";
+import { showMessage } from "../../adapters/showMessage";
 
 export function MainForm() {
 
@@ -24,13 +26,14 @@ export function MainForm() {
 
   function handleCreateNewTask(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    showMessage.dissmiss();
 
     if (!taskname) return;
 
     const taskName = taskname.trim();
 
-    if (taskName.length < 3) {
-      alert("A task deve ter pelo menos 3 caracteres.");
+    if (taskName.length < 2) {
+      showMessage.warn("A task deve ter pelo menos 3 caracteres.");
       return;
     }
 
@@ -46,10 +49,13 @@ export function MainForm() {
 
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask })
 
+    showMessage.sucess("Tarefa iniciada!");
 
   }
 
   function handleInterruptTask() {
+    showMessage.dissmiss();
+    showMessage.error("Tarefa interrompida!");
     dispatch({ type: TaskActionTypes.INTERRUPT_TASK })
   }
 
