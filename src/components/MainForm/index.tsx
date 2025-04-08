@@ -10,13 +10,17 @@ import { getNextCycleType } from "../../utils/getNextCycleType";
 import Cycles from "../Cycles";
 import DefaultButton from "../DefaultButton";
 import DefaultInput from "../DefaultInput";
+import { Tips } from "../Tips";
 
 export function MainForm() {
+
   const { state, dispatch } = useTaskContext();
   const [taskname, setTaskName] = useState("");
 
+  //ciclos
   const nextClycle = getNextCycle(state.currentCycle);
   const nextClycleType = getNextCycleType(nextClycle);
+
 
   function handleCreateNewTask(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -63,7 +67,7 @@ export function MainForm() {
       </div>
 
       <div className={styles.formRow}>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <Tips></Tips>
       </div>
 
       {state.currentCycle > 0 && (
