@@ -73,9 +73,11 @@ export function MainForm() {
         <p>Lorem ipsum dolor sit amet.</p>
       </div>
 
-      <div className={styles.formRow}>
-        <Cycles></Cycles>
-      </div>
+      {state.currentCycle > 0 && (
+        <div className={styles.formRow}>
+          <Cycles></Cycles>
+        </div>
+      )}
 
       <div className={styles.formRow}>
         <DefaultButton
