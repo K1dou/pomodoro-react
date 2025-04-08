@@ -44,6 +44,13 @@ export function taskReducer(state:TaskStateModel,action: TaskActionModel){
             return state;
         }
 
+        case TaskActionTypes.COUNT_DOWN:{
+            return {
+                ...state,
+                secondsRemaining: action.payload.secondsRemaining,
+                formattedSecondsRemaining: formatSecondsToMinutes(action.payload.secondsRemaining),
+            };
+        }
 
 
 
