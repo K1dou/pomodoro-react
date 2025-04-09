@@ -6,10 +6,9 @@ import {
   SunIcon,
 } from "lucide-react";
 
-import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
 import { RouterLink } from "../RouterLink";
+import styles from "./styles.module.css";
 
 export function Menu() {
   const [theme, setTheme] = useState<"dark" | "light">(() => {
