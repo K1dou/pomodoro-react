@@ -9,6 +9,7 @@ import {
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import { RouterLink } from "../RouterLink";
 
 export function Menu() {
   const [theme, setTheme] = useState<"dark" | "light">(() => {
@@ -38,30 +39,30 @@ export function Menu() {
 
   return (
     <nav className={styles.menu}>
-      <Link
+      <RouterLink
         className={styles.menuLink}
-        to="/"
+        href="/"
         aria-label="Ir para a página inicial"
         title="Ir para a página inicial"
       >
         <HouseIcon></HouseIcon>
-      </Link>
-      <a
+      </RouterLink>
+      <RouterLink
         className={styles.menuLink}
-        href="#"
+        href="/history"
         aria-label="Ir para a página de histórico"
         title="Ir para a página de histórico"
       >
         <HistoryIcon></HistoryIcon>
-      </a>
-      <a
+      </RouterLink>
+      <RouterLink
         className={styles.menuLink}
-        href="#"
+        href="/settings"
         aria-label="Ir para a página de configurações"
         title="Ir para a página de configurações"
       >
         <SettingsIcon></SettingsIcon>
-      </a>
+      </RouterLink>
       <a
         className={styles.menuLink}
         href="#"
