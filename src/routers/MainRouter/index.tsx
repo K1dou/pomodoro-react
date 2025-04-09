@@ -3,7 +3,7 @@ import { AboutPomodoro } from "../../pages/AboutPomodoro";
 import Home from "../../pages/Home";
 import { NotFound } from "../../pages/NotFound";
 import { useEffect } from "react";
-import History from "../../pages/Hisory";
+import History from "../../pages/History";
 
 function ScrolltoTop() {
     const { pathname } = useLocation();

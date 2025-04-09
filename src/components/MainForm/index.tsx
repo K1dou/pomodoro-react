@@ -67,7 +67,6 @@ export function MainForm() {
           type="text"
           placeholder="Digite algo"
           labelText="Task"
-          value={taskname}
           onChange={(e) => setTaskName(e.target.value)}
           disabled={!!state.activeTask}
           defaultValue={lastTaskName}
