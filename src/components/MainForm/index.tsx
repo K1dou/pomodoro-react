@@ -2,6 +2,7 @@ import styles from "./styles.module.css";
 
 import { PlayCircleIcon, StopCircleIcon } from "lucide-react";
 import { FormEvent, useState } from "react";
+import { showMessage } from "../../adapters/showMessage";
 import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { TaskModel } from "../../models/TaskModel";
@@ -11,13 +12,12 @@ import Cycles from "../Cycles";
 import DefaultButton from "../DefaultButton";
 import DefaultInput from "../DefaultInput";
 import { Tips } from "../Tips";
-import { toast } from "react-toastify";
-import { showMessage } from "../../adapters/showMessage";
 
 export function MainForm() {
 
   const { state, dispatch } = useTaskContext();
   const [taskname, setTaskName] = useState("");
+  const lastTaskName = state.tasks[state.tasks.length - 1]?.name || "";
 
   //ciclos
   const nextClycle = getNextCycle(state.currentCycle);
@@ -70,6 +70,7 @@ export function MainForm() {
           value={taskname}
           onChange={(e) => setTaskName(e.target.value)}
           disabled={!!state.activeTask}
+          defaultValue={lastTaskName}
         ></DefaultInput>
       </div>
 
