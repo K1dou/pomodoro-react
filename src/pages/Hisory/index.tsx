@@ -1,12 +1,18 @@
-import styles from "./styles.module.css"
+import styles from "./styles.module.css";
 
 import { TrashIcon } from "lucide-react";
 import Container from "../../components/Container";
 import DefaultButton from "../../components/DefaultButton";
 import { Heading } from "../../components/Heading";
+import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import MainTemplate from "../../templates/MainTemplate";
+import { formatDate } from "../../utils/formatDate";
 
 export default function History() {
+
+  const { state } = useTaskContext();
+  console.log("State no History:", state);
+
   return (
     <MainTemplate>
       <Container>
@@ -36,15 +42,16 @@ export default function History() {
 
 
             <tbody>
-              {Array.from({ length: 20 }).map(() => {
+              {state.tasks.map(task => {
                 return (
 
-                  <tr key={Math.random()}>
-                    <td>Estudar</td>
-                    <td>25min</td>
-                    <td>20/04/2025 08:00</td>
-                    <td>Completa</td>
-                    <td>Foco</td>
+                  <tr key={task.id}>
+                    <td>{task.name}</td>
+                    <td>{task.duration}</td>
+                    <td>{formatDate(task.startDate)}</td>
+                    <td>{task.interruptDate}</td>
+                    <td>{task.type}</td>
+
                   </tr>
 
                 );

@@ -58,8 +58,6 @@ export function TaskContextProvider({ children }: { children: React.ReactNode })
     }
     document.title = `${state.formattedSecondsRemaining} - Chronos Pomodoro`;
 
-
-
     worker.postMessage(state);
   }, [worker, state]);
 
