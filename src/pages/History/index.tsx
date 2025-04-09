@@ -15,6 +15,10 @@ import { showMessage } from "../../adapters/showMessage";
 
 export default function History() {
 
+  useEffect(() => {
+    document.title = "Histórico - Chronos Pomodoro";
+  }, [])
+
   const { state, dispatch } = useTaskContext();
   const [confirmClearHistory, setConfirmClearHistory] = useState(false);
   const hasTasks = state.tasks.length > 0;
