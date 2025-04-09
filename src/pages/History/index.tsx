@@ -77,8 +77,8 @@ export default function History() {
   }
 
   function handleResetHistory() {
-    showMessage.dissmiss;
-    showMessage.confirm('Tem certeza?', confirmation => {
+    showMessage.dissmiss();
+    showMessage.confirm('Tem certeza?', (confirmation) => {
       setConfirmClearHistory(confirmation);
     });
   }
